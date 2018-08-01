@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="template.xhtml">
+      <ui:define name="conteudo">
+      <h:form>
+      <h:messages/>
+      <h:inputHidden value="#{vagaAction.vaga.codigo}"/>
+      <fieldset>
+      <LEGEND>Cadastro de Vagas</LEGEND>
+      
+      <h:panelGrid id="painelVagas" columns="2">
+      <h:outputLabel id="lblNumero" for="lblNumero" value="Numero da Vaga:"/>
+      <h:inputText id="txtNumeroVaga" label="lblNumeroVaga" value="#{vagaAction.vaga.numeroVaga}"  requiredMessage="Informe o N° da vaga"   styleClass="txtNumeroVaga" >
+       <f:validateLength maximum="100"/>
+       
+      </h:inputText>
+      <h:outputLabel id="lblLocalizacao" for="lblLocalizacao" value="Localizaçao:"/>
+      <h:inputText id="txtLocalizacao" lable="lblLocalizacao" value="#{vagaAction.vaga.localizacao}" maxlength="200" required="true" requiredMessage="Informeo a localizaçao"   styleClass="txtLocalizacao">
+      <f:validateLength maximum="200"/>
+      </h:inputText>
+      
+      <h:outputText id="txtTamanho" value="Tamanho:"/>
+        <h:selectOneMenu id="tamanho" label="lblTamanho" value="#{vagaAction.vaga.tamanho}">
+          <f:selectItem itemLabel="Grande" itemValue="grande"/>
+          <f:selectItem itemLabel="Media" itemValue="media"/>
+          <f:selectItem itemLabel="Pequena" itemValue="pequena"/>
+        </h:selectOneMenu>
+
+
+		<h:outputLabel id="lblValor" for="lblvalor" value="valor:" />
+		<h:inputText value="#{vagaAction.vaga.valor}">
+		<f:convertNumber currencySymbol="$" type="currency" />
+        <f:validateDoubleRange minimum="788.00" maximum="9999.99" />
+		</h:inputText>
+
+		 <h:outputLabel id="lblSituacao" for="lblSituacao" value="Situaçao:"/>
+      <h:inputText id="txtSituacao" lable="lblSituacao" value="#{vagaAction.vaga.situacao}" maxlength="200" required="true" requiredMessage="Informeo a localizaçao"   styleClass="txtLocalizacao">
+      <f:validateLength maximum="200"/>
+      </h:inputText>
+
+
+				</h:panelGrid>
+      </fieldset>
+      <br/>
+    
+  
+         <h:panelGrid id="panelBotao" columns="3">
+      <h:commandButton id="btnNovo"     value="Novo"     styleClass="btnNovo" action="#{vagaAction.novo()}" immediate="true">
+      </h:commandButton>
+      <h:commandButton id="btnSalvar"  value="Salvar"   styleClass="btnSalvar" action="#{vagaAction.salvar()}"/>
+      <h:commandButton id="btnExcluir" value="Excluir"  styleClass="btnExcluir" action="#{vagaAction.excluir()}"/>
+      </h:panelGrid>
+      </h:form>
+      </ui:define>
+ </ui:composition>
+</html>

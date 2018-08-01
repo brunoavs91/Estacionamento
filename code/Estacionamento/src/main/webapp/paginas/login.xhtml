@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="template.xhtml">
+      <ui:define name="conteudo">
+    <h:head>
+        <title>Login Web</title>
+    </h:head>
+    <h:body>
+      <h:form id="formLogin">
+       <h1><h:outputText id="bemVindo" value="Bem vindo(a) ao sistema."/></h1>
+        <h:panelGrid id="LoginSenha" columns="2">
+          <h:outputText id="loginText" value="Login:"/>
+          <h:inputText id="login" label="Login"
+            value="#{loginMB.usuario.login}" required="true"/>
+
+          <h:outputText id="senhaText" value="Senha:"/>
+          <h:inputSecret id="senha" label="Senha"
+            value="#{loginMB.usuario.senha}" required="true"/>
+        </h:panelGrid>
+        <h:messages id="msgErro" style="color: red"/>
+        <h:commandButton id="botao" value="Entrar" action="#{loginMB.doEfetuarLogin}"/>
+      </h:form>
+    </h:body>     
+     </ui:define>
+     </ui:composition>
+</html>

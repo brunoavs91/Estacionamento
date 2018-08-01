@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="template.xhtml">
+      <ui:define name="conteudo">
+      <h:form>
+      <h:messages/>
+     	<h:dataTable  value="#{usuarioAction.usuarios}" var="usuario" rules="rows" cellpadding="5">
+     	<f:facet name="caption">
+     	A listagem a seguir exibe a relação de todos os Usuarios do sistema.
+     	</f:facet>
+     	<f:facet name="header">Listagem de Usuarios</f:facet>
+     	<f:facet name="footer">Final da Listagem de Usuarios</f:facet>
+     	
+     	<h:column>
+     	<f:facet name="header">Nome</f:facet>
+     	#{usuario.nome}
+     	</h:column>
+     	
+     	<h:column>
+     	<f:facet name="header">CPF</f:facet>
+     	#{usuario.cpf}
+     	</h:column>
+     	
+     	<h:column>
+     	<f:facet name="header">Email</f:facet>
+     	#{usuario.email}
+     	</h:column>
+     	
+     	<h:column>
+     	<f:facet name="header">Telefone</f:facet>
+     	#{usuario.telefone}
+     	</h:column>
+     	
+     	<h:column>
+     	<f:facet name="header">Tipo Usuario</f:facet>
+     	#{usuario.tipoUsuario}
+     	</h:column>
+     	
+     	
+     	
+     	<h:column>
+     	<h:commandLink action="#{usuarioAction.editar()}" >
+     	<h:graphicImage library="img" name="editar.png" style="border:0"/>
+     	<f:setPropertyActionListener target="#{usuarioAction.usuario}" value="#{usuario}"/>
+     	</h:commandLink>
+     	</h:column>
+     	<h:column>
+     	<h:commandLink action="#{usuarioAction.excluir()}" onclick="if(!confirm('Confirma a exclusão do usuario #{usuario.nome}?')) return false;">
+     	<h:graphicImage library="img" name="excluir.png" style="border:0"/>
+     	<f:setPropertyActionListener target="#{usuarioAction.usuario}" value="#{usuario}"/>
+     	</h:commandLink>
+     	</h:column>
+     	</h:dataTable>
+      </h:form>
+      </ui:define>
+     </ui:composition>
+</html>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="template.xhtml">
+      <ui:define name="conteudo">
+      <h:form>
+      <h:messages/>
+      <!-- <h:inputHidden value="#{usuarioAction.usuario.codigo}"/> -->
+      <fieldset>
+      <LEGEND>Cadastro de Usuario</LEGEND>
+      
+      <h:panelGrid id="painelUsuario" columns="2">
+      <h:outputLabel id="lblNome" for="lblNome" value="Nome:"/>
+      <h:inputText id="txtNome" label="lblNome" value="#{usuarioAction.usuario.nome}" maxlength="100" required="true" requiredMessage="Informe o Nome" validatorMessage="O nome ultrapassou 100 caracteres"  styleClass="txtNome" >
+       <f:validateLength maximum="100"/>
+      </h:inputText>
+      <h:outputLabel id="lblCPF" for="lblCPF" value="CPF:"/>
+      <h:inputText id="txtCPF" lable="lblCPF" value="#{usuarioAction.usuario.cpf}" maxlength="20" required="true" requiredMessage="Informeo CPF" validatorMessage="O CPF ultrapassou 20 caracteres"  styleClass="txtCPF">
+      <f:validateLength maximum="20"/>
+      </h:inputText>
+      
+      <h:outputLabel id="lblEmail" for="lblEmail" value="Email:"/>
+      <h:inputText id="txtEmail" label="lblEmail" value="#{usuarioAction.usuario.email}" required="true" maxlength="100" requiredMessage="Informe o Email" validatorMessage="O email ultrapassou 100 caracteres" styleClass="txtEmail">
+      <f:validateLength maximum="100"/>
+      </h:inputText>
+      
+      <h:outputLabel id="lblTelefone" for="lblTelefone" value="Telefone:"/>
+      <h:inputText id="txtTelefone" label="lblTelefone" value="#{usuarioAction.usuario.telefone}" required="true" maxlength="100" requiredMessage="Informe o Telefone" validatorMessage="O telefone ultrapassou 100 caracteres" styleClass="txtTelefone">
+      <f:validateLength maximum="100"/>
+      </h:inputText>
+      
+      <h:outputText id="txtTipoUsuario" value="Tipo:"/>
+        <h:selectOneMenu id="lblTipoUsuario" label="Tipo Usuario" value="#{usuarioAction.usuario.tipoUsuario}">
+          <f:selectItem itemLabel="Administrador" itemValue="Administrador"/>
+          <f:selectItem itemLabel="Supervisor" itemValue="Supervisor"/>
+          <f:selectItem itemLabel="Funcionario" itemValue="Funcionario"/>
+        </h:selectOneMenu>
+      
+      </h:panelGrid>
+      </fieldset>
+      <br/>
+    
+  
+         <h:panelGrid id="panelBotao" columns="3">
+      <h:commandButton id="btnNovo"     value="Novo"     styleClass="btnNovo" action="#{usuarioAction.novo()}" immediate="true">
+      </h:commandButton>
+      <h:commandButton id="btnSalvar"  value="Salvar"   styleClass="btnSalvar" action="#{usuarioAction.salvar()}"/>
+      <h:commandButton id="btnExcluir" value="Excluir"  styleClass="btnExcluir" action="#{usuarioAction.excluir()}"/>
+      </h:panelGrid>
+      </h:form>
+      </ui:define>
+ </ui:composition>
+</html>

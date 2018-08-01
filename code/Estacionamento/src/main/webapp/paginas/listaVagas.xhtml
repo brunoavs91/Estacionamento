@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="template.xhtml">
+      <ui:define name="conteudo">
+      <h:form>
+      <h:messages/>
+     	<h:dataTable  value="#{vagaAction.vagas}" var="vaga" rules="rows" cellpadding="5">
+     	<f:facet name="caption">
+     	A listagem a seguir exibe a relação de todos as vagas do sistema.
+     	</f:facet>
+     	<f:facet name="header">Listagem de Vagas</f:facet>
+     	<f:facet name="footer">Final da Listagem de Vagas</f:facet>
+     	
+     	<h:column>
+     	<f:facet name="header">Numero Vaga</f:facet>
+     	#{vaga.numeroVaga}
+     	</h:column>
+     	
+     	<h:column>
+     	<f:facet name="header">Localizaçao</f:facet>
+     	#{vaga.localizacao}
+     	</h:column>
+     	
+     	<h:column>
+     	<f:facet name="header">Tamanho</f:facet>
+     	#{vaga.tamanho}
+     	</h:column>
+     	
+     	<h:column>
+     	<f:facet name="header">Valor</f:facet>
+     	#{vaga.valor}
+     	</h:column>
+     	
+     	<h:column>
+     	<f:facet name="header">Situaçao</f:facet>
+     	#{vaga.situacao}
+     	</h:column>
+     	
+     	<h:column>
+     	<h:commandLink action="#{vagaAction.editar()}" >
+     	<h:graphicImage library="img" name="editar.png" style="border:0"/>
+     	<f:setPropertyActionListener target="#{vagaAction.vaga}" value="#{vaga}"/>
+     	</h:commandLink>
+     	</h:column>
+     	<h:column>
+     	<h:commandLink action="#{clienteAction.excluir()}" onclick="if(!confirm('Confirma a exclusão do cliente #{cliente.nome}?')) return false;">
+     	<h:graphicImage library="img" name="excluir.png" style="border:0"/>
+     	<f:setPropertyActionListener target="#{clienteAction.cliente}" value="#{cliente}"/>
+     	</h:commandLink>
+     	</h:column>
+     	</h:dataTable>
+      </h:form>
+      </ui:define>
+     </ui:composition>
+</html>

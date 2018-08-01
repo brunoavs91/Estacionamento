@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="template.xhtml">
+	<ui:define name="conteudo">
+		<h:form>
+			<h:messages />
+			<h:dataTable value="#{clienteAction.clientes}" var="cliente"
+				rules="rows" cellpadding="5">
+				<f:facet name="caption">
+     	A listagem a seguir exibe a relação de todos os clientes do sistema.
+     	</f:facet>
+				<f:facet name="header">Listagem de Clientes</f:facet>
+				<f:facet name="footer">Final da Listagem de Clientes</f:facet>
+
+				<h:column>
+					<f:facet name="header">Nome</f:facet>
+     	#{cliente.nome}
+     	</h:column>
+
+				<h:column>
+					<f:facet name="header">CPF</f:facet>
+     	#{cliente.cpf}
+     	</h:column>
+
+				<h:column>
+					<f:facet name="header">Email</f:facet>
+     	#{cliente.email}
+     	</h:column>
+
+				<h:column>
+					<f:facet name="header">Telefone</f:facet>
+     	#{cliente.telefone}
+     	</h:column>
+
+
+
+				<h:column>
+					<h:commandLink actionListener="#{clienteAction.editar(cliente)}">
+						<h:graphicImage library="img" name="editar.png" style="border:0" />
+					</h:commandLink>
+				</h:column>
+				<h:column>
+					<h:commandLink action="#{clienteAction.excluir()}"
+						onclick="if(!confirm('Confirma a exclusão do cliente #{cliente.nome}?')) return false;">
+						<h:graphicImage library="img" name="excluir.png" style="border:0" />
+						<f:setPropertyActionListener target="#{clienteAction.cliente}"
+							value="#{cliente}" />
+					</h:commandLink>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
