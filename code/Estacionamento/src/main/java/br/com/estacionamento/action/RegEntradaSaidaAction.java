@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -12,6 +14,7 @@ import javax.faces.event.ActionEvent;
 import org.omnifaces.util.Messages;
 import br.com.estacionamento.dao.RegistroEntradaSaidaDAO;
 import br.com.estacionamento.domain.RegistroEntradaSaida;
+import br.com.estacionamento.enumeration.TipoVeiculo;
 
 @ManagedBean
 @ViewScoped
@@ -65,6 +68,7 @@ public class RegEntradaSaidaAction implements Serializable {
 	public void salvar() {
 		try {
 			RegistroEntradaSaidaDAO regEntradaSaidaDAO = new RegistroEntradaSaidaDAO();
+			regEntradaSaida.setDataEntrada(new Date());
 			regEntradaSaidaDAO.merge(regEntradaSaida);
 			
 			regEntradaSaida = new RegistroEntradaSaida();
@@ -81,9 +85,24 @@ public class RegEntradaSaidaAction implements Serializable {
 		Messages.addGlobalInfo("Registro :" + regEntradaSaida.getCodigo());
 	}
 	
-	public void editar(ActionEvent evento) {
-		regEntradaSaida = (RegistroEntradaSaida) evento.getComponent().getAttributes().get("registroSelecionado");
+	public void editar(RegistroEntradaSaida regEntradaSaida) {
+		
+		RegistroEntradaSaidaDAO regEntradaSaidaDAO = new RegistroEntradaSaidaDAO();
+		regEntradaSaidaDAO.editar(regEntradaSaida);
 		Messages.addGlobalInfo("Registro :" + regEntradaSaida.getCodigo());
+	}
+	
+	public Long calcular(RegistroEntradaSaida regEntradaSaida){
+		
+		RegistroEntradaSaidaDAO regEntradaSaidaDAO = new RegistroEntradaSaidaDAO();
+		regEntradaSaidaDAO.buscarPlaca(regEntradaSaida.getPlaca());
+			
+		return regEntradaSaida.getDataSaida().getTime() - regEntradaSaida.getDataEntrada().getTime();
+		
+	}
+	
+	public List<TipoVeiculo> getTiposVeiculos(){
+		return Arrays.asList(TipoVeiculo.values());
 	}
 	
 }

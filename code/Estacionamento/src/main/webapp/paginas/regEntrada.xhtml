@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://java.sun.com/jsf/composite/primefaces">
 <ui:composition template="template.xhtml">
 	<ui:define name="conteudo">
 		<h:form>
@@ -13,22 +14,16 @@
 				<LEGEND>Registro de Entrada</LEGEND>
 
 				<h:panelGrid id="painelEntrada" columns="2">
-					<h:outputText id="ldata" value="Data Entrada" />
-					<h:inputText
-						value="#{regEntradaSaidaAction.regEntradaSaida.dataEntrada}"
-						required="true">
-						<f:convertDateTime pattern="dd/mm/yyyy" />
-					</h:inputText>
-
+					
 					<h:outputLabel id="lblPlaca" value="Placa:" />
 					<h:inputText id="txtPlaca" value="#{regEntradaSaidaAction.regEntradaSaida.placa}">
 						<f:validateLength maximum="100" />
 					</h:inputText>
 					
 					<h:outputLabel id="lblTipo" value="Tipo:" />
-					<h:inputText id="txtTipo" value="#{regEntradaSaidaAction.regEntradaSaida.tipo}">
-						<f:validateLength maximum="100" />
-					</h:inputText>
+					<h:selectOneMenu id="txtTipo" value="#{regEntradaSaidaAction.regEntradaSaida.tipo}">
+						<f:selectItems	value="#{regEntradaSaidaAction.tiposVeiculos}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.descricao}" />
+					</h:selectOneMenu>
 					
 					<h:outputLabel id="lblModelo" value="Modelo:" />
 					<h:inputText id="txtModelo" value="#{regEntradaSaidaAction.regEntradaSaida.modelo}">
@@ -42,12 +37,12 @@
 
 			<h:panelGrid id="panelBotao" columns="3">
 				<h:commandButton id="btnNovo" value="Novo" styleClass="btnNovo"
-					action="#{usuarioAction.novo()}" immediate="true">
+					action="#{regEntradaSaidaAction.novo()}" immediate="true">
 				</h:commandButton>
 				<h:commandButton id="btnSalvar" value="registrar"
-					styleClass="btnSalvar" action="#{usuarioAction.salvar()}" />
+					styleClass="btnSalvar" action="#{regEntradaSaidaAction.salvar()}" />
 				<h:commandButton id="btnExcluir" value="Excluir"
-					styleClass="btnExcluir" action="#{usuarioAction.excluir()}" />
+					styleClass="btnExcluir" action="#{regEntradaSaidaAction.excluir()}" />
 			</h:panelGrid>
 		</h:form>
 	</ui:define>

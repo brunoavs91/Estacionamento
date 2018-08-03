@@ -101,11 +101,11 @@ hr {
 	width: 980px;
 	margin: 0 auto;
 	padding: 0px;
-	background: url(../img/img02.jpg) repeat-y left top; 
+	background: url(img/img02.jpg) repeat-y left top; 
 }
 
 #page-bgtop {
-	background: url(../img/img01.jpg) no-repeat left top;
+	background: url(img/img01.jpg) no-repeat left top;
 	margin: 0px;
 	padding: 0px;
 }

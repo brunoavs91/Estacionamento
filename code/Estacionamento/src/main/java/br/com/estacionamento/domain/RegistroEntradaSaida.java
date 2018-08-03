@@ -1,12 +1,17 @@
 package br.com.estacionamento.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import br.com.estacionamento.enumeration.TipoVeiculo;
 
 @Entity
 public class RegistroEntradaSaida extends GenericDomain {
@@ -17,22 +22,22 @@ public class RegistroEntradaSaida extends GenericDomain {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataEntrada;
 	
-	
-	@Column(nullable = false)
+	@Column
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataSaida;
 
-	@Column(length = 50 , nullable = false)
+	@Column(length = 7, nullable = false)
 	private String placa;
 	
-	@Column(length = 50 , nullable = false)
-	private String tipo;
+	@Column(nullable = false)
+	@Enumerated(EnumType.STRING)
+	private TipoVeiculo tipo;
 	
 	@Column(length = 60 , nullable = false)
 	private String modelo;
 	
-	@Column(nullable = false)
-	private double valorPago;
+	@Column
+	private BigDecimal valorPago;
 	
 	@OneToOne
 	private Vaga vaga;
@@ -64,11 +69,12 @@ public class RegistroEntradaSaida extends GenericDomain {
 		this.placa = placa;
 	}
 
-	public String getTipo() {
+
+	public TipoVeiculo getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(TipoVeiculo tipo) {
 		this.tipo = tipo;
 	}
 
@@ -80,11 +86,13 @@ public class RegistroEntradaSaida extends GenericDomain {
 		this.modelo = modelo;
 	}
 
-	public double getValorPago() {
+	
+
+	public BigDecimal getValorPago() {
 		return valorPago;
 	}
 
-	public void setValorPago(double valorPago) {
+	public void setValorPago(BigDecimal valorPago) {
 		this.valorPago = valorPago;
 	}
 
