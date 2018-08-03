@@ -14,10 +14,6 @@
 			<default-locale>pt</default-locale>
 			<supported-locale>en</supported-locale>
 		</locale-config>
-		<resource-bundle>
-			<base-name>messages_pt_BR</base-name>
-			<var>msg</var>
-		</resource-bundle>
-		<message-bundle>messages_pt_BR</message-bundle>
+	
 	</application>
 </faces-config>
