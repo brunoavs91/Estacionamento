@@ -4,7 +4,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-<ui:composition template="template.xhtml">
+<ui:composition template="/template/template.xhtml">
 	<ui:define name="conteudo">
 		<h:form>
 			<h:messages />
@@ -18,15 +18,9 @@
 					<h:inputText id="txtPlaca" value="#{regEntradaSaidaAction.regEntradaSaida.placa}">
 						<f:validateLength maximum="100" />
 					</h:inputText>
-					
-					<h:outputLabel id="lblTipo" value="Tipo:" />
-					<h:inputText id="txtTipo" value="#{regEntradaSaidaAction.regEntradaSaida.tipo}">
-						<f:validateLength maximum="100" />
-					</h:inputText>
-					
-					<h:outputLabel id="lblModelo" value="Modelo:" />
-					<h:inputText id="txtModelo" value="#{regEntradaSaidaAction.regEntradaSaida.modelo}">
-						<f:validateLength maximum="100" />
+			
+					<h:outputLabel id="lblValor" value="Valor:" />
+					<h:inputText id="txtValor" value="#{regEntradaSaidaAction.regEntradaSaida.valorPago}">
 					</h:inputText>
 
 				</h:panelGrid>
@@ -35,13 +29,9 @@
 
 
 			<h:panelGrid id="panelBotao" columns="3">
-				<h:commandButton id="btnNovo" value="Novo" styleClass="btnNovo"
-					action="#{usuarioAction.novo()}" immediate="true">
-				</h:commandButton>
-				<h:commandButton id="btnSalvar" value="registrar"
-					styleClass="btnSalvar" action="#{usuarioAction.salvar()}" />
-				<h:commandButton id="btnExcluir" value="Excluir"
-					styleClass="btnExcluir" action="#{usuarioAction.excluir()}" />
+				
+				<h:commandButton id="btnSalvar" value="Calcular"
+					styleClass="btnSalvar" action="#{regEntradaSaidaAction.calcular(placa)}" />
 			</h:panelGrid>
 		</h:form>
 	</ui:define>

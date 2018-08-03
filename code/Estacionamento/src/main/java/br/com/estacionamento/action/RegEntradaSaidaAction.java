@@ -96,7 +96,7 @@ public class RegEntradaSaidaAction implements Serializable {
 		
 		RegistroEntradaSaidaDAO regEntradaSaidaDAO = new RegistroEntradaSaidaDAO();
 		regEntradaSaidaDAO.buscarPlaca(regEntradaSaida.getPlaca());
-			
+		regEntradaSaidaDAO.merge(regEntradaSaida);	
 		return regEntradaSaida.getDataSaida().getTime() - regEntradaSaida.getDataEntrada().getTime();
 		
 	}

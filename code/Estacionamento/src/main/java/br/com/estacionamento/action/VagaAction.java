@@ -1,6 +1,7 @@
 package br.com.estacionamento.action;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -11,6 +12,8 @@ import org.omnifaces.util.Messages;
 
 import br.com.estacionamento.dao.VagaDAO;
 import br.com.estacionamento.domain.Vaga;
+import br.com.estacionamento.enumeration.TamanhoVaga;
+import br.com.estacionamento.enumeration.TipoVeiculo;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -109,5 +112,8 @@ public class VagaAction implements Serializable {
 			Messages.addFlashGlobalError("Ocorreu um erro ao tentar editar a Vaga");
 			erro.printStackTrace();
 		}
+	}
+	public List<TamanhoVaga> getTamanhoVagas(){
+		return Arrays.asList(TamanhoVaga.values());
 	}
 }

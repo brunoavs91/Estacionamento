@@ -4,7 +4,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
-    <ui:composition template="template.xhtml">
+    <ui:composition template="/template/template.xhtml">
       <ui:define name="conteudo">
       <h:form>
       <h:messages/>
@@ -23,12 +23,10 @@
       <f:validateLength maximum="200"/>
       </h:inputText>
       
-      <h:outputText id="txtTamanho" value="Tamanho:"/>
-        <h:selectOneMenu id="tamanho" label="lblTamanho" value="#{vagaAction.vaga.tamanho}">
-          <f:selectItem itemLabel="Grande" itemValue="grande"/>
-          <f:selectItem itemLabel="Media" itemValue="media"/>
-          <f:selectItem itemLabel="Pequena" itemValue="pequena"/>
-        </h:selectOneMenu>
+        <h:outputLabel id="lblTamanho" value="Tamanho:" />
+					<h:selectOneMenu id="txtTamanho" value="#{vagaAction.vaga.tamanho}">
+						<f:selectItems	value="#{vagaAction.tamanhoVagas}" var="tamanho" itemValue="#{tamanho}" itemLabel="#{tamanho.descricao}" />
+					</h:selectOneMenu>
 
 
 		<h:outputLabel id="lblValor" for="lblvalor" value="valor:" />

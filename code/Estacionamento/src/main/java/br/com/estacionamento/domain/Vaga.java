@@ -2,6 +2,10 @@ package br.com.estacionamento.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+import br.com.estacionamento.enumeration.TamanhoVaga;
 
 @SuppressWarnings("serial")
 @Entity
@@ -13,8 +17,9 @@ public class Vaga extends GenericDomain {
 	@Column(length = 50 ,nullable = false )
 	private String localizacao;
 	
-	@Column(length = 50 ,nullable = false )
-	private String tamanho;
+	@Column
+	@Enumerated(EnumType.STRING)
+	private TamanhoVaga tamanho;
 	
 	@Column(nullable = false )
 	private double valor;
@@ -38,11 +43,12 @@ public class Vaga extends GenericDomain {
 		this.localizacao = localizacao;
 	}
 
-	public String getTamanho() {
+
+	public TamanhoVaga getTamanho() {
 		return tamanho;
 	}
 
-	public void setTamanho(String tamanho) {
+	public void setTamanho(TamanhoVaga tamanho) {
 		this.tamanho = tamanho;
 	}
 
