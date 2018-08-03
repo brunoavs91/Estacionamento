@@ -101,17 +101,17 @@ hr {
 	width: 980px;
 	margin: 0 auto;
 	padding: 0px;
-	background: url(img/img02.jpg) repeat-y left top; 
+	background: url(../../img/img02.jpg) repeat-y left top; 
 }
 
 #page-bgtop {
-	background: url(img/img01.jpg) no-repeat left top;
+	background: url(../../img/img01.jpg) no-repeat left top;
 	margin: 0px;
 	padding: 0px;
 }
 
 #page-bgbtm {
-	/* background: url(../img/img03.jpg) no-repeat left bottom;  */
+	background: url(../../img/img03.jpg) no-repeat left bottom;  */
 	background-color:#86ea66;
 	padding: 30px 40px 30px 30px;
 }
@@ -133,7 +133,7 @@ hr {
 .title {
 	margin: 0px;
 	padding-bottom: 25px;
-	background: url(../img/img05.jpg) repeat-x left bottom; 
+	background: url(../../img/img05.jpg) repeat-x left bottom; 
 }
 
 .title a {
@@ -159,7 +159,7 @@ hr {
 	width: 120px;
 	height: 26px;
 	padding: 2px 0px 0px 0px;
-	 background: url(../img/img06.jpg) no-repeat left top; 
+	 background: url(../../img/img06.jpg) no-repeat left top; 
 	text-align: center;
 }
 
@@ -168,7 +168,7 @@ hr {
 	width: 120px;
 	height: 26px;
 	padding: 2px 0px 0px 0px;
-	background: url(../img/img06.jpg) no-repeat left top;
+	background: url(../../img/img06.jpg) no-repeat left top;
 	text-align: center;
 }
 
@@ -256,7 +256,7 @@ hr {
 	width: 185px;
 	height: 32px;
 	padding: 6px 0px 0px 15px;
-	 background:url(../img/img04.jpg) no-repeat left top; 
+	 background:url(../../img/img04.jpg) no-repeat left top; 
 	font-size: 18px;
 	color: #FFFFFF;
 }
