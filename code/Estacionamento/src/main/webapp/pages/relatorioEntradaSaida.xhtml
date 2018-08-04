@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="/template/template.xhtml">
+      <ui:define name="conteudo">
+      <h:form>
+      <h:messages/>
+     	<h:dataTable  value="#{regEntradaSaidaAction.listaEntradaSaida}" var="regEntradaSaida" rules="rows" cellpadding="5">
+     	<f:facet name="caption">
+     	A listagem a seguir exibe a relação de todos os Registros do sistema.
+     	</f:facet>
+     	<f:facet name="header">Lista de Registros</f:facet>
+     	<f:facet name="footer">Final da Listagem de Registros</f:facet>
+     	
+     	<h:column>
+     	<f:facet name="header">Data Entrada</f:facet>
+     	#{regEntradaSaida.dataEntrada}
+     	</h:column>
+     	
+     	<h:column>
+     	<f:facet name="header">Data Saída</f:facet>
+     	#{regEntradaSaida.dataSaida}
+     	</h:column>
+     	
+     	<h:column>
+     	<f:facet name="header">Modelo</f:facet>
+     	#{regEntradaSaida.modelo}
+     	</h:column>
+     	
+     	<h:column>
+     	<f:facet name="header">Placa</f:facet>
+     	#{regEntradaSaida.placa}
+     	</h:column>
+     	
+     	<h:column>
+     	<f:facet name="header">Tipo</f:facet>
+     	#{regEntradaSaida.tipo}
+     	</h:column>
+     	
+     	<h:column>
+     	<f:facet name="header">Valor</f:facet>
+     	#{regEntradaSaida.valorPago}
+     	</h:column>
+     	
+     	
+     	
+     	<h:column>
+     	<h:commandLink action="#{regEntradaSaidaAction.editar()}" >
+     	<h:graphicImage library="img" name="editar.png" style="border:0"/>
+     	<f:setPropertyActionListener target="#{regEntradaSaidaAction.regEntradaSaida}" value="#{regEntradaSaida}"/>
+     	</h:commandLink>
+     	</h:column>
+     	<h:column>
+     	<h:commandLink action="#{regEntradaSaidaAction.excluir()}" onclick="if(!confirm('Confirma a exclusão do Registro #{usuario.nome}?')) return false;">
+     	<h:graphicImage library="img" name="excluir.png" style="border:0"/>
+     	<f:setPropertyActionListener target="#{regEntradaSaidaAction.regEntradaSaida}" value="#{regEntradaSaida}"/>
+     	</h:commandLink>
+     	</h:column>
+     	</h:dataTable>
+      </h:form>
+      </ui:define>
+     </ui:composition>
+</html>

@@ -1,8 +1,7 @@
 package br.com.estacionamento.action;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.time.Duration;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -10,8 +9,9 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.event.ActionEvent;
+
 import org.omnifaces.util.Messages;
+
 import br.com.estacionamento.dao.RegistroEntradaSaidaDAO;
 import br.com.estacionamento.domain.RegistroEntradaSaida;
 import br.com.estacionamento.enumeration.TipoVeiculo;
@@ -24,7 +24,6 @@ public class RegEntradaSaidaAction implements Serializable {
 	private List<RegistroEntradaSaida> listaEntradaSaida = new ArrayList<>();
 
 	private RegistroEntradaSaida regEntradaSaida = new RegistroEntradaSaida();
-	 
 
 	public List<RegistroEntradaSaida> getListaEntradaSaida() {
 		return listaEntradaSaida;
@@ -63,14 +62,13 @@ public class RegEntradaSaidaAction implements Serializable {
 			erro.printStackTrace();
 		}
 	}
-	
 
 	public void salvar() {
 		try {
 			RegistroEntradaSaidaDAO regEntradaSaidaDAO = new RegistroEntradaSaidaDAO();
 			regEntradaSaida.setDataEntrada(new Date());
 			regEntradaSaidaDAO.merge(regEntradaSaida);
-			
+
 			regEntradaSaida = new RegistroEntradaSaida();
 			listaEntradaSaida = regEntradaSaidaDAO.listar();
 			Messages.addFlashGlobalInfo("Registro salvo com sucesso");
@@ -80,29 +78,57 @@ public class RegEntradaSaidaAction implements Serializable {
 			erro.printStackTrace();
 		}
 	}
-	public void excluir(ActionEvent evento) {
-		regEntradaSaida = (RegistroEntradaSaida) evento.getComponent().getAttributes().get("registroSelecionado");
-		Messages.addGlobalInfo("Registro :" + regEntradaSaida.getCodigo());
+
+	public void excluir(RegistroEntradaSaida registroEntradaSaida) {
+		try {
+			RegistroEntradaSaidaDAO regEntradaSaidaDAO = new RegistroEntradaSaidaDAO();
+			regEntradaSaidaDAO.excluir(registroEntradaSaida);
+			Messages.addFlashGlobalInfo("Registro excluido  com sucesso");
+		} catch (Exception erro) {
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar salvar os Registro");
+			erro.printStackTrace();
+		}
 	}
-	
+
 	public void editar(RegistroEntradaSaida regEntradaSaida) {
-		
-		RegistroEntradaSaidaDAO regEntradaSaidaDAO = new RegistroEntradaSaidaDAO();
-		regEntradaSaidaDAO.editar(regEntradaSaida);
-		Messages.addGlobalInfo("Registro :" + regEntradaSaida.getCodigo());
+		try {
+			RegistroEntradaSaidaDAO regEntradaSaidaDAO = new RegistroEntradaSaidaDAO();
+			regEntradaSaidaDAO.editar(regEntradaSaida);
+			Messages.addGlobalInfo("Registro editado");
+		} catch (Exception erro) {
+			Messages.addFlashGlobalError("Erro ao editar");
+			erro.printStackTrace();
+		}
 	}
-	
-	public Long calcular(RegistroEntradaSaida regEntradaSaida){
-		
-		RegistroEntradaSaidaDAO regEntradaSaidaDAO = new RegistroEntradaSaidaDAO();
-		regEntradaSaidaDAO.buscarPlaca(regEntradaSaida.getPlaca());
-		regEntradaSaidaDAO.merge(regEntradaSaida);	
-		return regEntradaSaida.getDataSaida().getTime() - regEntradaSaida.getDataEntrada().getTime();
+
+	public void calcular(RegistroEntradaSaida regEntradaSaida) {
+		try {
+			RegistroEntradaSaidaDAO regEntradaSaidaDAO = new RegistroEntradaSaidaDAO();
+			regEntradaSaidaDAO.buscarPlaca(regEntradaSaida.getPlaca());
+			Long calculo=regEntradaSaida.getDataSaida().getTime() - regEntradaSaida.getDataEntrada().getTime();
+			
+			if(calculo >= 0 && calculo <=15.00)
+				regEntradaSaida.setValorPago(new BigDecimal(2.00));
+			if(calculo > 15.00 && calculo <=30.00)
+				regEntradaSaida.setValorPago(new BigDecimal(4.00));
+			if(calculo > 30.00 && calculo <= 45.00)
+				regEntradaSaida.setValorPago(new BigDecimal(6.00));
+			if(calculo > 45.00 && calculo <= 60.00)
+				regEntradaSaida.setValorPago(new BigDecimal(8.00));
+			else if (calculo > 60.00)
+				regEntradaSaida.setValorPago(new BigDecimal(15.00));
+			
+			regEntradaSaidaDAO.merge(regEntradaSaida);
+			
+		} catch (Exception erro) {
+			Messages.addFlashGlobalError("Erro ao calcular");
+			erro.printStackTrace();
+		}
 		
 	}
-	
-	public List<TipoVeiculo> getTiposVeiculos(){
+
+	public List<TipoVeiculo> getTiposVeiculos() {
 		return Arrays.asList(TipoVeiculo.values());
 	}
-	
+
 }

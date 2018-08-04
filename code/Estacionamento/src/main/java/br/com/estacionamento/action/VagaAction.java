@@ -10,7 +10,9 @@ import javax.faces.event.ActionEvent;
 
 import org.omnifaces.util.Messages;
 
+import br.com.estacionamento.dao.RegistroEntradaSaidaDAO;
 import br.com.estacionamento.dao.VagaDAO;
+import br.com.estacionamento.domain.RegistroEntradaSaida;
 import br.com.estacionamento.domain.Vaga;
 import br.com.estacionamento.enumeration.TamanhoVaga;
 import br.com.estacionamento.enumeration.TipoVeiculo;
@@ -78,18 +80,20 @@ public class VagaAction implements Serializable {
 		}
 	}
 
-	/*
-	 * public void excluir() { try { VagaDAO vagaDAO = new VagaDAO();
-	 * vagaDAO.excluir(vaga);
-	 * 
-	 * vagas = vagaDAO.listar();
-	 * 
-	 * Messages.addFlashGlobalInfo("Vaga excluida  com sucesso"); } catch (Exception
-	 * erro) {
-	 * Messages.addFlashGlobalError("Ocorreu um erro ao tentar excluir as Vagas");
-	 * erro.printStackTrace(); } }
-	 */
+	public void excluir() {
+		try {
+			VagaDAO vagaDAO = new VagaDAO();
+			vagaDAO.excluir(vaga);
 
+			vagas = vagaDAO.listar();
+
+			Messages.addFlashGlobalInfo("Vaga excluida  com sucesso");
+		} catch (Exception erro) {
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar excluir as Vagas");
+			erro.printStackTrace();
+		}
+	}
+/*
 	public void excluir(ActionEvent evento) {
 		try {
 			vaga = (Vaga) evento.getComponent().getAttributes().get("vagaSelecionado");
@@ -100,20 +104,20 @@ public class VagaAction implements Serializable {
 			Messages.addFlashGlobalError("Ocorreu um erro ao tentar remover a Vaga");
 			erro.printStackTrace();
 		}
-	}
+	}*/
 
-	public void editar(ActionEvent evento) {
-		try {	
-		vaga = (Vaga) evento.getComponent().getAttributes().get("vagaSelecionado");
-		
-		VagaDAO vagaDAO = new VagaDAO();
-		vagaDAO.editar(vaga);
-		}catch (RuntimeException erro) {
-			Messages.addFlashGlobalError("Ocorreu um erro ao tentar editar a Vaga");
+	public void editar(RegistroEntradaSaida regEntradaSaida) {
+		try {
+			VagaDAO vagaDAO = new VagaDAO();
+			vagaDAO.editar(vaga);
+			Messages.addGlobalInfo("Vaga editada");
+		} catch (Exception erro) {
+			Messages.addFlashGlobalError("Erro ao editar");
 			erro.printStackTrace();
 		}
 	}
-	public List<TamanhoVaga> getTamanhoVagas(){
+
+	public List<TamanhoVaga> getTamanhoVagas() {
 		return Arrays.asList(TamanhoVaga.values());
 	}
 }

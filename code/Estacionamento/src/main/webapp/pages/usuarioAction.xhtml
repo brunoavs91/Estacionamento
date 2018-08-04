@@ -32,12 +32,10 @@
       <f:validateLength maximum="100"/>
       </h:inputText>
       
-      <h:outputText id="txtTipoUsuario" value="Tipo:"/>
-        <h:selectOneMenu id="lblTipoUsuario" label="Tipo Usuario" value="#{usuarioAction.usuario.tipoUsuario}">
-          <f:selectItem itemLabel="Administrador" itemValue="Administrador"/>
-          <f:selectItem itemLabel="Supervisor" itemValue="Supervisor"/>
-          <f:selectItem itemLabel="Funcionario" itemValue="Funcionario"/>
-        </h:selectOneMenu>
+      <h:outputText id="lblTipoUsuario" value="Tipo:"/>
+        <h:selectOneMenu id="txtTipoUsuario" value="#{usuarioAction.usuario.tipoUsuario}">
+						<f:selectItems	value="#{usuarioAction.tipoUsuarios}" var="vaga" itemValue="#{vaga}" itemLabel="#{vaga.descricao}" />
+					</h:selectOneMenu>
       
       </h:panelGrid>
       </fieldset>
