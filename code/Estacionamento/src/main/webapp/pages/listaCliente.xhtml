@@ -39,16 +39,18 @@
 
 
 				<h:column>
-					<h:commandLink actionListener="#{clienteAction.editar(cliente)}">
-						<h:graphicImage library="img" name="editar.png" style="border:0" />
+					<h:commandLink id="btnEditar" value="Editar" 
+					actionListener="#{clienteAction.editar(cliente)}">
 					</h:commandLink>
 				</h:column>
 				<h:column>
-					<h:commandLink action="#{clienteAction.excluir()}"
+						<h:commandButton id="btnSalvar" value="Salvar"
+					 action="#{clienteAction.salvar()}" />
+				</h:column>
+				<h:column>
+					<h:commandLink  id="btnExcluir" value="Excluir"  
+					  action="#{clienteAction.excluir(cliente)}"
 						onclick="if(!confirm('Confirma a exclusão do cliente #{cliente.nome}?')) return false;">
-						<h:graphicImage library="img" name="excluir.png" style="border:0" />
-						<f:setPropertyActionListener target="#{clienteAction.cliente}"
-							value="#{cliente}" />
 					</h:commandLink>
 				</h:column>
 			</h:dataTable>

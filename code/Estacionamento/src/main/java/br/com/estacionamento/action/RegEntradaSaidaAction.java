@@ -83,6 +83,7 @@ public class RegEntradaSaidaAction implements Serializable {
 		try {
 			RegistroEntradaSaidaDAO regEntradaSaidaDAO = new RegistroEntradaSaidaDAO();
 			regEntradaSaidaDAO.excluir(registroEntradaSaida);
+			listaEntradaSaida = regEntradaSaidaDAO.listar();
 			Messages.addFlashGlobalInfo("Registro excluido  com sucesso");
 		} catch (Exception erro) {
 			Messages.addFlashGlobalError("Ocorreu um erro ao tentar salvar os Registro");
@@ -94,6 +95,7 @@ public class RegEntradaSaidaAction implements Serializable {
 		try {
 			RegistroEntradaSaidaDAO regEntradaSaidaDAO = new RegistroEntradaSaidaDAO();
 			regEntradaSaidaDAO.editar(regEntradaSaida);
+			regEntradaSaidaDAO.merge(regEntradaSaida);
 			Messages.addGlobalInfo("Registro editado");
 		} catch (Exception erro) {
 			Messages.addFlashGlobalError("Erro ao editar");

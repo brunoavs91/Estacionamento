@@ -43,16 +43,15 @@
      	
      	
      	<h:column>
-     	<h:commandLink action="#{usuarioAction.editar()}" >
-     	<h:graphicImage library="img" name="editar.png" style="border:0"/>
-     	<f:setPropertyActionListener target="#{usuarioAction.usuario}" value="#{usuario}"/>
-     	</h:commandLink>
+     	<h:commandLink id="btnEditar" value="Editar" 
+					actionListener="#{usuarioAction.editar(usuario)}">
+					</h:commandLink>
      	</h:column>
      	<h:column>
-     	<h:commandLink action="#{usuarioAction.excluir()}" onclick="if(!confirm('Confirma a exclusão do usuario #{usuario.nome}?')) return false;">
-     	<h:graphicImage library="img" name="excluir.png" style="border:0"/>
-     	<f:setPropertyActionListener target="#{usuarioAction.usuario}" value="#{usuario}"/>
-     	</h:commandLink>
+     	<h:commandLink  id="btnExcluir" value="Excluir"  
+					  action="#{usuarioAction.excluir(usuario)}"
+						onclick="if(!confirm('Confirma a exclusão do cliente #{usuario.nome}?')) return false;">
+					</h:commandLink>
      	</h:column>
      	</h:dataTable>
       </h:form>

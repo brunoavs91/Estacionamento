@@ -79,26 +79,14 @@ public class ClienteAction implements Serializable {
 			erro.printStackTrace();
 		}
 	}
-/*
-	public void excluir() {
-		try {
-			ClienteDAO clienteDAO = new ClienteDAO();
-			clienteDAO.excluir(cliente);
 
-			clientes = clienteDAO.listar();
-
-			Messages.addFlashGlobalInfo("Cliente excluido  com sucesso");
-		} catch (Exception erro) {
-			Messages.addFlashGlobalError("Ocorreu um erro ao tentar excluir os Clientes");
-			erro.printStackTrace();
-		}
-	}*/
-	public void excluir(ActionEvent evento) {
+	
+	public void excluir(Cliente cliente) {
 		try {	
-		cliente = (Cliente) evento.getComponent().getAttributes().get("clienteSelecionado");
-		
 		ClienteDAO clienteDAO = new ClienteDAO();
 		clienteDAO.excluir(cliente);
+		clientes = clienteDAO.listar();
+		Messages.addFlashGlobalInfo("Cliente excluido com sucesso");
 		
 		} catch (Exception erro) {
 			Messages.addFlashGlobalError("Ocorreu um erro ao tentar excluir os Clientes");
@@ -110,6 +98,10 @@ public class ClienteAction implements Serializable {
 	try {	
 		ClienteDAO clienteDAO = new ClienteDAO();
 		clienteDAO.editar(cliente);
+		
+		clienteDAO.merge(cliente);
+		
+		Messages.addFlashGlobalInfo("Cliente editado com sucesso");
 	}catch (Exception erro) {
 		Messages.addFlashGlobalError("Ocorreu um erro ao tentar editar os Clientes");
 		erro.printStackTrace();

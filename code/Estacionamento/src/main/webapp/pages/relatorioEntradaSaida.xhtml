@@ -48,16 +48,16 @@
      	
      	
      	<h:column>
-     	<h:commandLink action="#{regEntradaSaidaAction.editar()}" >
-     	<h:graphicImage library="img" name="editar.png" style="border:0"/>
-     	<f:setPropertyActionListener target="#{regEntradaSaidaAction.regEntradaSaida}" value="#{regEntradaSaida}"/>
+     	<h:commandLink id="btnEditar" value="Editar"
+     	action="#{regEntradaSaidaAction.editar(regEntradaSaida)}" >
+     	
      	</h:commandLink>
      	</h:column>
      	<h:column>
-     	<h:commandLink action="#{regEntradaSaidaAction.excluir()}" onclick="if(!confirm('Confirma a exclusão do Registro #{usuario.nome}?')) return false;">
-     	<h:graphicImage library="img" name="excluir.png" style="border:0"/>
-     	<f:setPropertyActionListener target="#{regEntradaSaidaAction.regEntradaSaida}" value="#{regEntradaSaida}"/>
-     	</h:commandLink>
+     	<h:commandLink  id="btnExcluir" value="Excluir"  
+					  action="#{regEntradaSaidaAction.excluir(regEntradaSaida)}"
+						onclick="if(!confirm('Confirma a exclusão do Registro #{regEntradaSaida.placa}?')) return false;">
+					</h:commandLink>
      	</h:column>
      	</h:dataTable>
       </h:form>
