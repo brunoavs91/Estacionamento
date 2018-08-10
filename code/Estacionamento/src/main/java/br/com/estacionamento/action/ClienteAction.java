@@ -45,7 +45,6 @@ public class ClienteAction implements Serializable {
 		try {
 			ClienteDAO clienteDAO = new ClienteDAO();
 			clientes = clienteDAO.listar();
-			Messages.addFlashGlobalError("Lista Carregada");
 		} catch (RuntimeException erro) {
 			Messages.addFlashGlobalError("Ocorreu um erro ao tentar listar os Clientes");
 			erro.printStackTrace();

@@ -9,16 +9,15 @@ import br.com.estacionamento.util.HibernateUtil;
 
 public class RegistroEntradaSaidaDAO extends GenericDAO<RegistroEntradaSaida>{
 	
+	@SuppressWarnings("deprecation")
 	public RegistroEntradaSaida buscarPlaca(String placa) {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		try {
-			@SuppressWarnings("deprecation")
 			Criteria consulta = sessao.createCriteria(classe);
-			consulta.add(Restrictions.idEq(placa));
-			@SuppressWarnings("unchecked")
-			RegistroEntradaSaida resultado = (RegistroEntradaSaida) consulta.uniqueResult();
-			return resultado;
+			consulta.add(Restrictions.like("placa", placa));
+			return (RegistroEntradaSaida) consulta.uniqueResult();
 		} catch (RuntimeException erro) {
+			erro.printStackTrace();
 			throw erro;
 		} finally {
 			sessao.close();

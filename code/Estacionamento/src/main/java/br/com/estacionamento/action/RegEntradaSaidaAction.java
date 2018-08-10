@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -40,7 +41,8 @@ public class RegEntradaSaidaAction implements Serializable {
 	public void setRegEntradaSaida(RegistroEntradaSaida regEntradaSaida) {
 		this.regEntradaSaida = regEntradaSaida;
 	}
-
+	
+	@PostConstruct
 	public void listar() {
 		try {
 			RegistroEntradaSaidaDAO regEntradaSaida = new RegistroEntradaSaidaDAO();
@@ -103,10 +105,11 @@ public class RegEntradaSaidaAction implements Serializable {
 		}
 	}
 
-	public void calcular(RegistroEntradaSaida regEntradaSaida) {
+	public void calcular() {
 		try {
 			RegistroEntradaSaidaDAO regEntradaSaidaDAO = new RegistroEntradaSaidaDAO();
 			regEntradaSaidaDAO.buscarPlaca(regEntradaSaida.getPlaca());
+			regEntradaSaida.setDataSaida(new Date());
 			Long calculo=regEntradaSaida.getDataSaida().getTime() - regEntradaSaida.getDataEntrada().getTime();
 			
 			if(calculo >= 0 && calculo <=15.00)

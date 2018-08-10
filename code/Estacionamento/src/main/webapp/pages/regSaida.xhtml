@@ -15,7 +15,7 @@
 				<h:panelGrid id="painelSaida" columns="2">
 					
 					<h:outputLabel id="lblPlaca" value="Placa:" />
-					<h:inputText id="txtPlaca" value="#{regEntradaSaidaAction.regEntradaSaida.placa}">
+					<h:inputText id="txtPlaca" value="#{regEntradaSaidaAction.regEntradaSaida.placa}" >
 						<f:validateLength maximum="100" />
 					</h:inputText>
 			
@@ -31,7 +31,7 @@
 			<h:panelGrid id="panelBotao" columns="3">
 				
 				<h:commandButton id="btnCalcular" value="Calcular"
-					styleClass="btnSalvar" action="#{regEntradaSaidaAction.calcular(placa)}" />
+					styleClass="btnSalvar" action="#{regEntradaSaidaAction.calcular}" />
 			</h:panelGrid>
 		</h:form>
 	</ui:define>
