@@ -17,37 +17,36 @@
      	
      	<h:column>
      	<f:facet name="header">Data Entrada</f:facet>
-     	#{regEntradaSaida.dataEntrada}
+     		<h:inputText style="width:140px;" value="#{regEntradaSaida.dataEntrada}" />
      	</h:column>
-     	
      	<h:column>
      	<f:facet name="header">Data Saída</f:facet>
-     	#{regEntradaSaida.dataSaida}
+     	<h:inputText style="width:140px;" value="#{regEntradaSaida.dataSaida}" />
      	</h:column>
      	
      	<h:column>
      	<f:facet name="header">Modelo</f:facet>
-     	#{regEntradaSaida.modelo}
+     	<h:inputText style="width:60px;" value="#{regEntradaSaida.modelo}" />
      	</h:column>
      	
      	<h:column>
      	<f:facet name="header">Placa</f:facet>
-     	#{regEntradaSaida.placa}
+     	<h:inputText style="width:50px;" value="#{regEntradaSaida.placa}" />
      	</h:column>
      	
      	<h:column>
      	<f:facet name="header">Tipo</f:facet>
-     	#{regEntradaSaida.tipo}
+     	<h:inputText style="width:30px;" value="#{regEntradaSaida.tipo}" />
      	</h:column>
      	
      	<h:column>
      	<f:facet name="header">Valor</f:facet>
-     	#{regEntradaSaida.valorPago}
+     	<h:inputText style="width:60px;" value="#{regEntradaSaida.valorPago}" />
      	</h:column>
      	
      	<h:column>
      	<h:commandLink id="btnEditar" value="Editar"
-     	action="#{regEntradaSaidaAction.editar(regEntradaSaida)}" >
+     	actionListener="#{regEntradaSaidaAction.editar(regEntradaSaida)}" >
      	
      	</h:commandLink>
      	</h:column>

@@ -18,38 +18,33 @@
 
 				<h:column>
 					<f:facet name="header">Nome</f:facet>
-     	#{cliente.nome}
-     	</h:column>
+					<h:inputText style="width:100px;" value="#{cliente.nome}" />
+
+				</h:column>
 
 				<h:column>
 					<f:facet name="header">CPF</f:facet>
-     	#{cliente.cpf}
-     	</h:column>
+					<h:inputText style="width:100px;" value="#{cliente.cpf}" />
+				</h:column>
 
 				<h:column>
 					<f:facet name="header">Email</f:facet>
-     	#{cliente.email}
-     	</h:column>
+					<h:inputText style="width:100px;" value="#{cliente.email}" />
+				</h:column>
 
 				<h:column>
 					<f:facet name="header">Telefone</f:facet>
-     	#{cliente.telefone}
-     	</h:column>
-
-
+					<h:inputText style="width:100px;" value="#{cliente.telefone}" />
+				</h:column>
 
 				<h:column>
-					<h:commandLink id="btnEditar" value="Editar" 
-					actionListener="#{clienteAction.editar(cliente)}">
+					<h:commandLink id="btnEditar" value="Editar"
+						actionListener="#{clienteAction.editar(cliente)}">
 					</h:commandLink>
 				</h:column>
 				<h:column>
-						<h:commandButton id="btnSalvar" value="Salvar"
-					 action="#{clienteAction.salvar()}" />
-				</h:column>
-				<h:column>
-					<h:commandLink  id="btnExcluir" value="Excluir"  
-					  action="#{clienteAction.excluir(cliente)}"
+					<h:commandLink id="btnExcluir" value="Excluir"
+						action="#{clienteAction.excluir(cliente)}"
 						onclick="if(!confirm('Confirma a exclusão do cliente #{cliente.nome}?')) return false;">
 					</h:commandLink>
 				</h:column>
