@@ -26,7 +26,7 @@ public class RegistroEntradaSaida extends GenericDomain {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataSaida;
 
-	@Column(length = 7, nullable = false)
+	@Column(length = 7, nullable = false ,unique=true)
 	private String placa;
 	
 	@Column(nullable = false)
