@@ -1,6 +1,8 @@
 package br.com.estacionamento.domain;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -19,12 +21,10 @@ public class RegistroEntradaSaida extends GenericDomain {
 
 
 	@Column(nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataEntrada;
+	private LocalDateTime dataEntrada;
 	
 	@Column
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataSaida;
+	private LocalDateTime dataSaida;
 
 	@Column(length = 7, nullable = false ,unique=true)
 	private String placa;
@@ -41,25 +41,22 @@ public class RegistroEntradaSaida extends GenericDomain {
 	
 	@OneToOne
 	private Vaga vaga;
-	
 
-	public Date getDataEntrada() {
+	public LocalDateTime getDataEntrada() {
 		return dataEntrada;
 	}
 
-	public void setDataEntrada(Date dataEntrada) {
+	public void setDataEntrada(LocalDateTime dataEntrada) {
 		this.dataEntrada = dataEntrada;
 	}
 
-
-	public Date getDataSaida() {
+	public LocalDateTime getDataSaida() {
 		return dataSaida;
 	}
 
-	public void setDataSaida(Date dataSaida) {
+	public void setDataSaida(LocalDateTime dataSaida) {
 		this.dataSaida = dataSaida;
 	}
-
 
 	public String getPlaca() {
 		return placa;

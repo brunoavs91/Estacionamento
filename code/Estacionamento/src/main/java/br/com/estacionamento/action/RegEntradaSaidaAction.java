@@ -2,6 +2,9 @@ package br.com.estacionamento.action;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -68,7 +71,7 @@ public class RegEntradaSaidaAction implements Serializable {
 	public void salvar() {
 		try {
 			RegistroEntradaSaidaDAO regEntradaSaidaDAO = new RegistroEntradaSaidaDAO();
-			regEntradaSaida.setDataEntrada(new Date());
+			regEntradaSaida.setDataEntrada(LocalDateTime.now());
 			regEntradaSaidaDAO.merge(regEntradaSaida);
 
 			regEntradaSaida = new RegistroEntradaSaida();
@@ -108,10 +111,17 @@ public class RegEntradaSaidaAction implements Serializable {
 	public void calcular() {
 		try {
 			RegistroEntradaSaidaDAO regEntradaSaidaDAO = new RegistroEntradaSaidaDAO();
-			regEntradaSaidaDAO.buscarPlaca(regEntradaSaida.getPlaca());
-			regEntradaSaida.setDataSaida(new Date());
-			Long calculo=regEntradaSaida.getDataSaida().getTime() - regEntradaSaida.getDataEntrada().getTime();
+			regEntradaSaida = regEntradaSaidaDAO.buscarPlaca(regEntradaSaida.getPlaca());
 			
+			
+			regEntradaSaida.setDataSaida(LocalDateTime.now());
+			
+			
+			
+			//Long calculo=regEntradaSaida.getDataSaida().getTime() - regEntradaSaida.getDataEntrada().(regEntradaSaida.getDataSaida());
+			Duration duracao = Duration.between(regEntradaSaida.getDataEntrada(), regEntradaSaida.getDataSaida());
+			
+			long calculo = duracao.toMinutes();
 			if(calculo >= 0 && calculo <=15.00)
 				regEntradaSaida.setValorPago(new BigDecimal(2.00));
 			if(calculo > 15.00 && calculo <=30.00)

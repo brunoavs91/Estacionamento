@@ -1,8 +1,9 @@
 package br.com.estacionamento.dao;
 
-import org.hibernate.Criteria;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
 
 import br.com.estacionamento.domain.RegistroEntradaSaida;
 import br.com.estacionamento.util.HibernateUtil;
@@ -13,9 +14,11 @@ public class RegistroEntradaSaidaDAO extends GenericDAO<RegistroEntradaSaida>{
 	public RegistroEntradaSaida buscarPlaca(String placa) {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		try {
-			Criteria consulta = sessao.createCriteria(classe);
-			consulta.add(Restrictions.like("placa", placa));
-			return (RegistroEntradaSaida) consulta.uniqueResult();
+		
+			TypedQuery<RegistroEntradaSaida> query = sessao.createQuery("from RegistroEntradaSaida reg where reg.placa = :placa", RegistroEntradaSaida.class);
+			query.setParameter("placa", placa);
+			return query.getSingleResult();
+			
 		} catch (RuntimeException erro) {
 			erro.printStackTrace();
 			throw erro;
