@@ -41,7 +41,7 @@ public class ClienteAction implements Serializable {
 	}
 
 	@PostConstruct
-	public void listar() {
+	public void inicializar() {
 		try {
 			ClienteDAO clienteDAO = new ClienteDAO();
 			clientes = clienteDAO.listar();

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
@@ -43,6 +44,7 @@ public class UsuarioAction implements Serializable {
 		this.usuarios = usuarios;
 	}
 
+	@PostConstruct
 	public void listar() {
 		try {
 			UsuarioDAO usuarioDAO = new UsuarioDAO();

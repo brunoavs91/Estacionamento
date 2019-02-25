@@ -18,9 +18,16 @@
 					<h:inputText id="txtPlaca" value="#{regEntradaSaidaAction.regEntradaSaida.placa}" >
 						<f:validateLength maximum="100" />
 					</h:inputText>
+					
+						
+					<h:outputLabel id="lblTipo" value="Tipo:" />
+					<h:selectOneMenu id="txtTipo" value="#{regEntradaSaidaAction.regEntradaSaida.tipo}">
+						<f:selectItems	value="#{regEntradaSaidaAction.tiposVeiculos}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.descricao}" />
+					</h:selectOneMenu>
 			
 					<h:outputLabel id="lblValor" value="Valor:" />
-					<h:inputText id="txtValor" value="#{regEntradaSaidaAction.regEntradaSaida.valorPago}">
+					<h:inputText id="txtValor" disabled="true"
+					 value="#{regEntradaSaidaAction.regEntradaSaida.valorPago}">
 					</h:inputText>
 
 				</h:panelGrid>
