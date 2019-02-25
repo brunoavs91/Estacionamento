@@ -26,7 +26,6 @@ public class RegEntradaSaidaAction implements Serializable {
 	private static final long serialVersionUID = -3529722568709950696L;
 
 	
-	
 	private List<RegistroEntradaSaida> listaEntradaSaida = new ArrayList<>();
 
 	private RegistroEntradaSaida regEntradaSaida = new RegistroEntradaSaida();
