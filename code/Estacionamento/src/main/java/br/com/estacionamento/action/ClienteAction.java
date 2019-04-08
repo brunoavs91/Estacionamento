@@ -51,16 +51,10 @@ public class ClienteAction implements Serializable {
 		}
 	}
 
-	public void novo() {
-		try {
-			cliente = new Cliente();
-
-			ClienteDAO clienteDAO = new ClienteDAO();
-			clientes = clienteDAO.listar();
-		} catch (Exception erro) {
-			Messages.addFlashGlobalError("Ocorreu um erro ao tentar listar os Clientes");
-			erro.printStackTrace();
-		}
+	public void limpar() {
+		
+			this.setCliente(new Cliente());
+		
 	}
 
 	public void salvar() {

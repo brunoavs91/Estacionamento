@@ -8,7 +8,6 @@
       <ui:define name="conteudo">
       <h:form>
       <h:messages/>
-      <h:inputHidden value="#{vagaAction.vaga.codigo}"/>
       <fieldset>
       <LEGEND>Cadastro de Vagas</LEGEND>
       
@@ -47,10 +46,10 @@
     
   
          <h:panelGrid id="panelBotao" columns="3">
-      <h:commandButton id="btnNovo"     value="Novo"     styleClass="btnNovo" action="#{vagaAction.novo()}" immediate="true">
-      </h:commandButton>
-      <h:commandButton id="btnSalvar"  value="Salvar"   styleClass="btnSalvar" action="#{vagaAction.salvar()}"/>
-      <h:commandButton id="btnExcluir" value="Excluir"  styleClass="btnExcluir" action="#{vagaAction.excluir()}"/>
+      <h:commandButton id="btnSalvar"  value="Salvar" 
+        styleClass="btnSalvar" action="#{vagaAction.salvar()}"/>
+      <h:commandButton id="btnNovo"   value="Limpar"   
+        styleClass="btnNovo" action="#{vagaAction.limpar()}"/>
       </h:panelGrid>
       </h:form>
       </ui:define>

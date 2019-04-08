@@ -57,16 +57,8 @@ public class RegEntradaSaidaAction implements Serializable {
 		}
 	}
 
-	public void novo() {
-		try {
-			regEntradaSaida = new RegistroEntradaSaida();
-
-			RegistroEntradaSaidaDAO regEntradaSaida = new RegistroEntradaSaidaDAO();
-			listaEntradaSaida = regEntradaSaida.listar();
-		} catch (Exception erro) {
-			Messages.addFlashGlobalError("Ocorreu um erro ao tentar listar os Clientes");
-			erro.printStackTrace();
-		}
+	public void limpar() {
+			this.setRegEntradaSaida(new RegistroEntradaSaida());
 	}
 
 	public void salvar() {

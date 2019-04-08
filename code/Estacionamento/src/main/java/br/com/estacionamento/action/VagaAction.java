@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
@@ -41,6 +42,17 @@ public class VagaAction implements Serializable {
 	public void setVagas(List<Vaga> vagas) {
 		this.vagas = vagas;
 	}
+	@PostConstruct
+	public void inicializar() {
+		try {
+			this.vaga=new Vaga();
+			VagaDAO vagaDAO = new VagaDAO();
+			vagas = vagaDAO.listar();
+			
+		}catch(RuntimeException erro) {
+			erro.printStackTrace();
+		}
+	}
 
 	public void listar() {
 		try {
@@ -52,16 +64,8 @@ public class VagaAction implements Serializable {
 		}
 	}
 
-	public void novo() {
-		try {
-			vaga = new Vaga();
-
-			VagaDAO vagaDAO = new VagaDAO();
-			vagas = vagaDAO.listar();
-		} catch (Exception erro) {
-			Messages.addFlashGlobalError("Ocorreu um erro ao tentar criar uma nova vaga");
-			erro.printStackTrace();
-		}
+	public void limpar() {
+			this.setVaga(new Vaga());
 	}
 
 	public void salvar() {

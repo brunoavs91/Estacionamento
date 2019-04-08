@@ -55,16 +55,8 @@ public class UsuarioAction implements Serializable {
 		}
 	}
 
-	public void novo() {
-		try {
-			usuario = new Usuario();
-
-			UsuarioDAO usuarioDAO = new UsuarioDAO();
-			usuarios = usuarioDAO.listar();
-		} catch (Exception erro) {
-			Messages.addFlashGlobalError("Ocorreu um erro ao tentar criar um novo Usuario");
-			erro.printStackTrace();
-		}
+	public void limpar() {
+			this.setUsuario(new Usuario());
 	}
 
 	public void salvar() {

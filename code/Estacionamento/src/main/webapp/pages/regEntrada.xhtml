@@ -36,13 +36,12 @@
 
 
 			<h:panelGrid id="panelBotao" columns="3">
-				<h:commandButton id="btnNovo" value="Novo" styleClass="btnNovo"
-					action="#{regEntradaSaidaAction.novo()}" immediate="true">
-				</h:commandButton>
+				
 				<h:commandButton id="btnSalvar" value="registrar"
 					styleClass="btnSalvar" action="#{regEntradaSaidaAction.salvar()}" />
-				<h:commandButton id="btnExcluir" value="Excluir"
-					styleClass="btnExcluir" action="#{regEntradaSaidaAction.excluir()}" />
+				<h:commandButton id="btnNovo" value="Limpar" styleClass="btnNovo"
+					action="#{regEntradaSaidaAction.limpar()}">
+				</h:commandButton>
 			</h:panelGrid>
 		</h:form>
 	</ui:define>

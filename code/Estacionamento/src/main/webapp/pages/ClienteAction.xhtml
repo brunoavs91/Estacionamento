@@ -59,13 +59,13 @@
 
 
 			<h:panelGrid id="panelBotao" columns="3">
-				<h:commandButton id="btnNovo" value="Novo" styleClass="btnNovo"
-					action="#{clienteAction.novo()}" immediate="true">
-				</h:commandButton>
+				
 				<h:commandButton id="btnSalvar" value="Salvar"
 					styleClass="btnSalvar" action="#{clienteAction.salvar()}" />
-				<h:commandButton id="btnExcluir" value="Excluir"
-					styleClass="btnExcluir" action="#{clienteAction.excluir()}" />
+					
+					<h:commandButton id="btnNovo" value="Limpar" styleClass="btnNovo"
+					action="#{clienteAction.limpar()}">
+				</h:commandButton>
 			</h:panelGrid>
 		</h:form>
 	</ui:define>
