@@ -12,4 +12,6 @@ Marcos Vinicius
 
 ## Link para o professor
 
+[Ferramenta de Planejamento e Backlog Atualizado](https://dev.azure.com/projetos-estacio/Estacionamento%20Estacio)
+
 [Backlog do Produto](https://trello.com/b/2S7dAcAZ/estacionamento)
